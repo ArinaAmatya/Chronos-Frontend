@@ -13,7 +13,7 @@ export const DateTime = () => {
 
     return(
         <div>
-            <p> Time: {date.toLocaleTimeString()} </p>
+             <div style={{ fontSize: '80px', marginTop: '30px', color: '#ff5e8e', textAlign: 'center' }}>{date.toLocaleTimeString()}</div>
         </div>
     )
 }

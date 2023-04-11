@@ -17,8 +17,17 @@ import LandingPage from "./LandingPage";
 import SideBar from "./components/SideBar";
 // import ContactUs from "./components/ContactUs";
 import PunchInPage from "./PunchInPage"
+//use state for login token
+import React, {useState} from 'react';
 
 function App() {
+  const [token, setToken] = useState();
+
+  if(!localStorage.getItem('token')) {
+    console.log("hi")
+    console.log(token)
+    return <LoginPage setToken={setToken} />
+  }
   return (
     <>
       {/* This is the alias of BrowserRouter i.e. Router */}
