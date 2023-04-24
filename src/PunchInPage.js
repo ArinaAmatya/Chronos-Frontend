@@ -1,44 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import DateTime from './components/DateTime';
 
-   
 function PunchInPage(){
-  const [showClockInClockOut, setShowClockInClockOut] = useState(false)
-  const [isChecked, setIsChecked] = useState()
-  const [timeOnSubmit, setTimeOnSubmit] = useState()
-  var [date, setDate] = useState(new Date());
-
-  useEffect(() => {
-    var timer = setInterval(() =>setDate(new Date()), 1000)
-    return function cleanup() {
-        clearInterval(timer)
-    }
-  });
-
-  const handleSubmit = async e => {
-   
-    e.preventDefault();
-    setTimeOnSubmit(date.toLocaleTimeString())
-    setIsChecked(e.target[0].checked)
-    setShowClockInClockOut(true)
-    console.log(isChecked)
-    console.log(timeOnSubmit)
-
-  }
-
     return  (
         <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 300px)' }}> 
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 300px)' }}> 
           <DateTime></DateTime>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 'calc(100vh - 100px)'}}>
                 <input type="checkbox" style={{ width: '200px', height: '200px' }} />
             </div>
             <button type="submit" style={{ padding: '15px', borderRadius: '5px', backgroundColor: 'green', color: 'white', border: 'none', width: '20%', fontSize: '24px', padding: '10px 20px'}}>Submit</button> &nbsp;&nbsp;&nbsp;
-            {showClockInClockOut && isChecked && <p style={{ color: 'green', fontSize: '50px'}}>You clocked in at {timeOnSubmit}</p>}
-            {showClockInClockOut && !isChecked && <p style={{ color: 'green', fontSize: '50px' }}>You clocked out at {timeOnSubmit}</p>}
-        </form>
+        </div>
       </div>
     );
+    
 }
 export default PunchInPage;
 //space-between
