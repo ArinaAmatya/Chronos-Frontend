@@ -18,6 +18,8 @@ import SideBar from "./components/SideBar";
 // import ContactUs from "./components/ContactUs";
 import PunchInPage from "./PunchInPage"
 
+import ViewData from "./ViewData"
+
 function App() {
   return (
     <>
@@ -37,6 +39,8 @@ function App() {
           <Route path="/sidebar" component={SideBar} />
 
           <Route path="/punchin" component={PunchInPage} />
+
+          <Route path="/viewdata" component={ViewData} />
           {/* If any route mismatches the upper 
           route endpoints then, redirect triggers 
           and redirects app to home component with to=" /" */}
