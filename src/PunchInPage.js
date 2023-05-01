@@ -23,6 +23,16 @@ function PunchInPage(){
     setShowClockInClockOut(true)
     console.log(isChecked)
     console.log(timeOnSubmit)
+    
+    const b = localStorage.getItem('token')
+
+    const a = fetch('http://127.0.0.1:8000/api/accounts/punch', {
+    method: 'POST',
+    headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text())
+    console.log(a)
+
+    const test = await fetch('http://127.0.0.1:8000/api/accounts/punch-in-time', {headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text()).then((body) => console.log(body))
+    console.log(test)
 
   }
 
