@@ -21,7 +21,7 @@ function ViewData (){
             selector: (row) =>row.email
         }
     ] 
-
+//coment up
     useEffect(() => {
         fetchTableData()
     }, []) 
