@@ -22,19 +22,35 @@ function ViewData (){
         }
     ] 
 //coment up
-    useEffect(() => {
-        fetchTableData()
-    }, []) 
+    // useEffect(() => {
+    //     fetchTableData()
+    // }, []) 
 
-    async function fetchTableData (){
-        setLoading(true)
-        const URL = "https://jsonplaceholder.typicode.com/users"
-        const response = await fetch(URL)
-        const users =  response.json()
-        console.log(users)
-        setData(users)
-        setLoading(false)
-    }
+    // async function fetchTableData (){
+    //     setLoading(true)
+    //     const URL = "https://jsonplaceholder.typicode.com/users"
+    //     const response = await fetch(URL)
+    //     const users =  response.json()
+    //     console.log(users)
+    //     setData(users)
+    //     setLoading(false)
+    // }
+    const handleSubmit = async e => {
+   
+        // e.preventDefault();
+        // setTimeOnSubmit(date.toLocaleTimeString())
+        // setIsChecked(e.target[0].checked)
+        // setShowClockInClockOut(true)
+        // console.log(isChecked)
+        // console.log(timeOnSubmit)
+        
+        const b = localStorage.getItem('token')
+    
+        const test = await fetch('http://127.0.0.1:8000/api/accounts/me', {headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text()).then((body) => console.log(body))
+        console.log(test)
+    
+        }
+    
     const [selectedDate, setSelectedDate]= useState (null)
      
     return  (
@@ -42,10 +58,12 @@ function ViewData (){
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }}>
                   <img src={require("./images/logo.png")} alt="Logos" style={{ height: '50px' }} />
                   <div style={{ marginRight: '1700px', fontSize: '40px', fontWeight: 'ExtraBold', color: '#000000' }}>CHRONOS</div>
+                   
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: 'calc(100vh - 300px)' }}> 
                   <div style={{ fontSize: '40px', marginBottom: '30px', color: 'black', textAlign: 'center' }}>View Hours</div> 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '140px', marginBottom: '250px' }}>
+                    <div>{handleSubmit()}</div>
                     <DatePicker 
                         selected = {selectedDate} 
                         onChange ={ date => setSelectedDate(date)} 
