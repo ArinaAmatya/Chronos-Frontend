@@ -6,20 +6,50 @@ function PunchInPage(){
   const [showClockInClockOut, setShowClockInClockOut] = useState(false)
   const [isChecked, setIsChecked] = useState()
   const [timeOnSubmit, setTimeOnSubmit] = useState()
+  const [isPunchedIn, setIsPunchedIn] = useState(false)
+  const [hasCalledAPI, setHasCalledAPI] = useState(false)
+
   var [date, setDate] = useState(new Date());
 
+  async function getPunchIn() {
+    const response = await fetch('http://127.0.0.1:8000/api/accounts/punch-in-time', {
+      method: 'GET',
+      headers: {
+        'accept':'application/json', 'Authorization' : 'token ' + localStorage.getItem('token')
+      }})
+      .then(response => response.text())
+
+      return JSON.parse(response)
+  }
+
+
   useEffect(() => {
-    var timer = setInterval(() =>setDate(new Date()), 1000)
-    return function cleanup() {
-        clearInterval(timer)
+    async function fetchData() {
+        const response = await getPunchIn();
+        console.log(response.Response["start time"])
+        setTimeOnSubmit(response.Response["start time"]);
+        if (response.Response["start time"] != null) {
+          console.log("hi")
+          setIsPunchedIn(true)
+          setShowClockInClockOut(true)
+      }
     }
-  });
+    if (!hasCalledAPI) {
+      fetchData();
+      setHasCalledAPI(true);
+    }
+    
+    var timer = setInterval(() => setDate(new Date()), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  }, [timeOnSubmit]);
 
   const handleSubmit = async e => {
    
     e.preventDefault();
     setTimeOnSubmit(date.toLocaleTimeString())
-    setIsChecked(e.target[0].checked)
+    setIsPunchedIn(e.target[0].checked)
     setShowClockInClockOut(true)
     console.log(isChecked)
     console.log(timeOnSubmit)
@@ -41,8 +71,8 @@ function PunchInPage(){
                 <input type="checkbox" style={{ width: '200px', height: '200px' }} />
             </div>
             <button type="submit" style={{ padding: '15px', borderRadius: '5px', backgroundColor: 'green', color: 'white', border: 'none', width: '20%', fontSize: '24px', padding: '10px 20px'}}>Submit</button> &nbsp;&nbsp;&nbsp;
-            {showClockInClockOut && isChecked && <p style={{ color: 'green', fontSize: '50px'}}>You clocked in at {timeOnSubmit}</p>}
-            {showClockInClockOut && !isChecked && <p style={{ color: 'green', fontSize: '50px' }}>You clocked out at {timeOnSubmit}</p>}
+            {showClockInClockOut && isPunchedIn && <p style={{ color: 'green', fontSize: '50px'}}>You clocked in at {timeOnSubmit}</p>}
+            {showClockInClockOut && !isPunchedIn && <p style={{ color: 'green', fontSize: '50px' }}>You clocked out at {timeOnSubmit}</p>}
         </form>
       </div>
     );
