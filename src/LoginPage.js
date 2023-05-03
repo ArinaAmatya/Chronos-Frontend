@@ -50,7 +50,6 @@ function LoginPage({setToken}) {
       localStorage.setItem('token', message.token)
       const response = await getUserInfo()
       const userinfo = JSON.parse(response)
-      console.log(userinfo)
       localStorage.setItem('first_name',userinfo.Response.first_name)
       window.location.href='/landing'
     }
