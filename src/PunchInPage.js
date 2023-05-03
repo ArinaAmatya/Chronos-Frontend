@@ -22,15 +22,34 @@ function PunchInPage(){
       return JSON.parse(response)
   }
 
+  function stringManip(string) {
+    let hours = string.slice(0,2)
+    let theRest = string.substring(2, string.length-7)
+    let millis = string.slice(-7)
+    console.log(hours)
+    hours = parseInt(hours) - 4
+    console.log(hours)
+    if (hours > 12) {
+      return hours%12 + theRest + " PM"
+    }
+    else if (hours == 12) {
+      return hours + theRest + " PM"
+    }
+    else {
+      return hours + theRest + " AM"
+    }
+  }
+
 
   useEffect(() => {
     async function fetchData() {
         const response = await getPunchIn();
         console.log(response.Response["start time"])
-        setTimeOnSubmit(response.Response["start time"]);
         if (response.Response["start time"] != null) {
-          console.log("hi")
-          setIsPunchedIn(true)
+          const a = stringManip(response.Response["start time"])
+          console.log(a)
+          setTimeOnSubmit(a)
+          setIsPunchedIn(true)  
           setShowClockInClockOut(true)
       }
     }
