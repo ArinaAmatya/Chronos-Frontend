@@ -86,6 +86,7 @@ function PunchInPage(){
         <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 300px)' }}> 
           <div style={{fontSize: '100px', fontWeight: 'ExtraBold', color: '#ff5e8e' }}>{date.toLocaleTimeString()}</div>
+          <div style={{ fontSize: '20px', marginBottom: '40px', color: 'gray', textAlign: 'center' }}>click on box below to punch in</div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 'calc(100vh - 100px)'}}>
                 <input type="checkbox" style={{ width: '200px', height: '200px' }} />
             </div>
