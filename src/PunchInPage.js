@@ -23,23 +23,20 @@ function PunchInPage(){
     setShowClockInClockOut(true)
     console.log(isChecked)
     console.log(timeOnSubmit)
-    
-    const b = localStorage.getItem('token')
 
-    const a = fetch('http://127.0.0.1:8000/api/accounts/punch', {
+    fetch('http://127.0.0.1:8000/api/accounts/punch', {
     method: 'POST',
-    headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text())
-    console.log(a)
+    headers: {'accept': 'application/json', 'Authorization' : "token " + localStorage.getItem('token')}}).then(response => response.text()).then(data => console.log(data))
 
-    const test = await fetch('http://127.0.0.1:8000/api/accounts/punch-in-time', {headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text()).then((body) => console.log(body))
-    console.log(test)
+    //const test = await fetch('http://127.0.0.1:8000/api/accounts/punch-in-time', {headers: {'accept': 'application/json', 'Authorization' : "token " + localStorage.getItem('token')}}).then(response => response.text()).then((body) => console.log(body))
+    //console.log(test)
 
   }
 
     return  (
         <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 300px)' }}> 
-          <DateTime></DateTime>
+          <div style={{fontSize: '100px', fontWeight: 'ExtraBold', color: '#ff5e8e' }}>{date.toLocaleTimeString()}</div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 'calc(100vh - 100px)'}}>
                 <input type="checkbox" style={{ width: '200px', height: '200px' }} />
             </div>

@@ -15,6 +15,22 @@ async function loginUser(credentials) {
     
 }
 
+async function getUserInfo() {
+  return fetch('http://127.0.0.1:8000/api/accounts/me', {
+  method: 'GET',
+  headers: {
+    'accept': 'application/json',
+    'Authorization' : "token " + localStorage.getItem('token')
+  }})
+  .then(response => response.text())
+  //.then(data => {
+   // const response = JSON.parse(data)
+    //localStorage.setItem('first_name', response.Response.first_name)
+   // console.log("hi!")
+  //})
+
+}
+
 function LoginPage({setToken}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -32,6 +48,10 @@ function LoginPage({setToken}) {
     if (message.status == true) {
       console.log(message.token)
       localStorage.setItem('token', message.token)
+      const response = await getUserInfo()
+      const userinfo = JSON.parse(response)
+      console.log(userinfo)
+      localStorage.setItem('first_name',userinfo.Response.first_name)
       window.location.href='/landing'
     }
     else
