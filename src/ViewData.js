@@ -25,33 +25,33 @@ function ViewData (){
     ]
     
 //coment up
-    useEffect(() => {
-        fetchTableData()
-    }, []) 
+    // useEffect(() => {
+    //     //fetchTableData()
+    // }, []) 
 
-    async function fetchTableData (){
-        setLoading(true)
-        const URL = "http://127.0.0.1:8000/api/accounts/hoursWorked"
-        const response = await fetch(URL)
-        const date =  response.json()
-        console.log(date)
-        setDate(date)
-        setLoading(false)
-    }
-    // // const handleSubmit = async e => {
+    // async function fetchTableData (){
+    //     setLoading(true)
+    //     const URL = "http://127.0.0.1:8000/api/accounts/hoursWorked"
+    //     const response = await fetch(URL)
+    //     const date =  response.json()
+    //     console.log(date)
+    //     setDate(date)
+    //     setLoading(false)
+    // }
+     const handleSubmit = async e => {
    
-    //     e.preventDefault();
-    //     setTimeOnSubmit(date.toLocaleTimeString())
-    //     setIsChecked(e.target[0].checked)
-    //     setShowClockInClockOut(true)
-    //     console.log(isChecked)
-    //     console.log(timeOnSubmit)
+        // e.preventDefault();
+        // setTimeOnSubmit(date.toLocaleTimeString())
+        // setIsChecked(e.target[0].checked)
+        // setShowClockInClockOut(true)
+        // console.log(isChecked)
+        // console.log(timeOnSubmit)
         
-        // const b = localStorage.getItem('token')
+        const b = localStorage.getItem('token')
     
-        // const test = await fetch('http://127.0.0.1:8000/api/accounts/me', {headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text()).then((body) => console.log(body))
-        // console.log(test)
-    
+        const test = await fetch('http://127.0.0.1:8000/api/accounts/me', {headers: {'accept': 'application/json', 'Authorization' : "token " + b}}).then(response => response.text()).then((body) => console.log(body))
+        console.log(test)
+     }
         
     
     const [selectedDate, setSelectedDate]= useState (null)
@@ -66,7 +66,7 @@ function ViewData (){
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: 'calc(100vh - 300px)' }}> 
                   <div style={{ fontSize: '40px', marginBottom: '30px', color: 'black', textAlign: 'center' }}>View Hours</div> 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '140px', marginBottom: '250px' }}>
-                    {/* <div>{handleSubmit()}</div> */}
+                    <div>{handleSubmit()}</div>
                     <DatePicker 
                         selected = {selectedDate} 
                         onChange ={ date => setSelectedDate(date)} 
