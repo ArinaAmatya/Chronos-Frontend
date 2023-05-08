@@ -1,27 +1,25 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
 import { useState, useEffect } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-function ViewData() {
+function ManagerView() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [perPage, setPerPage] = useState(7);
-  const [selectedDate, setSelectedDate] = useState(null);
+//   const [selectedDate, setSelectedDate] = useState(null);
   const columns = [
     {
       name: "First Name",
-      selector: (row) => row.firstName
+      selector: (row) => row.first_name
     },
     {
-        name: "Last Name",
-        selector: (row) => row.lastName
+      name: "Last Name",
+      selector: (row) => row.Hlast_name
     },
     {
-        name: "email",
-        selector: (row) => row.email
+      name: "email",
+      selector: (row) => row.email
     }
   ];
 
@@ -31,7 +29,7 @@ function ViewData() {
 
   async function fetchTableData() {
     setLoading(true);
-    const response = await fetch('http://127.0.0.1:8000/api/accounts/hoursWorked', {
+    const response = await fetch('http://127.0.0.1:8000/api/accounts/manager', {
       method: 'GET',
       headers: {
         'accept':'application/json', 'Authorization' : 'token ' + localStorage.getItem('token')
@@ -44,14 +42,14 @@ function ViewData() {
     setLoading(false);
   }
 
-  function filterDataByDate(date) {
-    const filteredData = data.filter((item) => item.Date === date.toISOString().slice(0,10));
-    setFilteredData(filteredData);
-  }
+//   function filterDataByDate(date) {
+//     const filteredData = data.filter((item) => item.Date === date.toISOString().slice(0,10));
+//     setFilteredData(filteredData);
+//   }
 
   useEffect(() => {
     if (selectedDate) {
-      filterDataByDate(selectedDate);
+      filterDataBy(selectedDate);
     } else {
       setFilteredData(data);
     }
@@ -65,17 +63,7 @@ function ViewData() {
 
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: 'calc(100vh - 300px)' }}>
-        <div style={{ fontSize: '40px', marginBottom: '30px', color: 'black', textAlign: 'center' }}>View Hours</div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: '140px', marginBottom: '250px' }}>
-          <DatePicker
-            selected={selectedDate}
-            onChange={date => setSelectedDate(date)}
-            maxDate={new Date()}
-            showYearDropdown
-            scrollableMonthYearDropdown
-            onSelect={filterDataByDate}
-          />
-        </div>
+        <div style={{ fontSize: '40px', marginBottom: '30px', color: 'black', textAlign: 'center' }}>View Employees</div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: 'calc(100vh - 100px)', marginBottom: '400px' }}>
           <DataTable
             columns={columns}
@@ -88,5 +76,5 @@ function ViewData() {
   );
 }
 
-export default ViewData;
+export default managerViewEmployees;
 

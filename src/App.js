@@ -16,9 +16,11 @@ import LandingPage from "./LandingPage";
 // import ContactUs component
 import SideBar from "./components/SideBar";
 // import ContactUs from "./components/ContactUs";
-import PunchInPage from "./PunchInPage"
+import PunchInPage from "./PunchInPage";
 
-import ViewData from "./ViewData"
+import ViewData from "./ViewData";
+
+import managerView from "./managerView";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
           <Route path="/punchin" component={PunchInPage} />
 
           <Route path="/viewdata" component={ViewData} />
+
+          <Route path="/managerView" component={managerView} />
           {/* If any route mismatches the upper 
           route endpoints then, redirect triggers 
           and redirects app to home component with to=" /" */}
