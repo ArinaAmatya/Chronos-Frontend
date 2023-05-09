@@ -20,7 +20,7 @@ import PunchInPage from "./PunchInPage";
 
 import ViewData from "./ViewData";
 
-import managerView from "./managerView";
+import managerView from "./ManagerView";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
 
           <Route path="/viewdata" component={ViewData} />
 
-          <Route path="/managerView" component={managerView} />
+          <Route path="/managerview" component={managerView} />
           {/* If any route mismatches the upper 
           route endpoints then, redirect triggers 
           and redirects app to home component with to=" /" */}

@@ -12,17 +12,14 @@ function ViewData() {
   const [selectedDate, setSelectedDate] = useState(null);
   const columns = [
     {
-      name: "First Name",
-      selector: (row) => row.firstName
+      name: "Date",
+      selector: (row) => row.Date
     },
     {
-        name: "Last Name",
-        selector: (row) => row.lastName
+        name: "Hours Worked",
+        selector: (row) => row.Hours
     },
-    {
-        name: "email",
-        selector: (row) => row.email
-    }
+
   ];
 
   useEffect(() => {

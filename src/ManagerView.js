@@ -15,7 +15,7 @@ function ManagerView() {
     },
     {
       name: "Last Name",
-      selector: (row) => row.Hlast_name
+      selector: (row) => row.last_name
     },
     {
       name: "email",
@@ -29,7 +29,7 @@ function ManagerView() {
 
   async function fetchTableData() {
     setLoading(true);
-    const response = await fetch('http://127.0.0.1:8000/api/accounts/manager', {
+    const response = await fetch('http://127.0.0.1:8000/api/accounts/api/manager/employees', {
       method: 'GET',
       headers: {
         'accept':'application/json', 'Authorization' : 'token ' + localStorage.getItem('token')
@@ -47,14 +47,7 @@ function ManagerView() {
 //     setFilteredData(filteredData);
 //   }
 
-  useEffect(() => {
-    if (selectedDate) {
-      filterDataBy(selectedDate);
-    } else {
-      setFilteredData(data);
-    }
-  }, [data, selectedDate]);
-
+ 
   return (
     <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }}>
@@ -76,5 +69,5 @@ function ManagerView() {
   );
 }
 
-export default managerViewEmployees;
+export default ManagerView;
 

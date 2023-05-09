@@ -1,5 +1,6 @@
 import React from 'react';
 
+const isManager = true;
 function LandingPage(){
     return  (
         <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
@@ -12,6 +13,7 @@ function LandingPage(){
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', maxWidth: 'calc(100vh - 100px)', marginBottom: '20px' }}>
               <button type="button" onClick={event => window.location.href='/punchin'} style={{ padding: '15px', borderRadius: '5px', backgroundColor: 'green', color: 'white', border: 'none', width: '50%', fontSize: '24px' }}>Punch In/Out</button> &nbsp;&nbsp;&nbsp;
               <button type="button" onClick={event => window.location.href='/viewdata'} style={{ padding: '15px', borderRadius: '5px', backgroundColor: 'green', color: 'white', border: 'none', width: '50%', fontSize: '24px' }}>View Hours</button>
+              {isManager &&  <button type="button" onClick={event => window.location.href='/managerview'} style={{ padding: '15px', borderRadius: '5px', backgroundColor: 'green', color: 'white', border: 'none', width: '50%', fontSize: '24px' }}>Manager View</button> }
              
             </div>
         </div>
