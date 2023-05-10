@@ -23,12 +23,17 @@ async function getUserInfo() {
     'Authorization' : "token " + localStorage.getItem('token')
   }})
   .then(response => response.text())
-  //.then(data => {
-   // const response = JSON.parse(data)
-    //localStorage.setItem('first_name', response.Response.first_name)
-   // console.log("hi!")
-  //})
 
+}
+
+async function getEmployees() {
+  return fetch('http://127.0.0.1:8000/api/accounts/api/manager/employees', {
+  method: 'GET',
+  headers: {
+    'accept': 'application/json',
+    'Authorization' : "token " + localStorage.getItem('token')
+  }})
+  .then(response => response.text())
 }
 
 function LoginPage({setToken}) {
@@ -51,13 +56,21 @@ function LoginPage({setToken}) {
       const response = await getUserInfo()
       const userinfo = JSON.parse(response)
       localStorage.setItem('first_name',userinfo.Response.first_name)
+      const employees = await getEmployees()
+      console.log(JSON.parse(employees).Response)
+      if (JSON.parse(employees).Response.length == 0) {
+        localStorage.setItem('isManager', 'false')
+      }
+      else {
+        localStorage.setItem('isManager', 'true')
+      }
       window.location.href='/landing'
     }
     else
       setLoginError(true)
 
   }
-
+  
   return (
     <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }}>
