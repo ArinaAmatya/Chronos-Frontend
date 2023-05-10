@@ -29,7 +29,7 @@ function ManagerView() {
 
   async function fetchTableData() {
     setLoading(true);
-    const response = await fetch('http://127.0.0.1:8000/api/accounts/api/manager/employees', {
+    const response = await fetch('http://127.0.0.1:8000/api/accounts/api/manager/employees?', {
       method: 'GET',
       headers: {
         'accept':'application/json', 'Authorization' : 'token ' + localStorage.getItem('token')
@@ -42,9 +42,21 @@ function ManagerView() {
     setLoading(false);
   }
 
+  const onRowClicked = (row, event) => {
+    //console.log(row)
+    localStorage.setItem('email', row.email)
+    localStorage.setItem('First Name' , row.first_name)
+    localStorage.setItem('Last Name' , row.last_name)
+    //console.log(localStorage.getItem('email'))
+    //event => window.location.href='/ViewEmploee', 
+    //console.log(event)
+    //{ event => window.location.href='/viewemployee'}
+    window.location.href='/viewemployee'
+  }
+
 //   function filterDataByDate(date) {
 //     const filteredData = data.filter((item) => item.Date === date.toISOString().slice(0,10));
-//     setFilteredData(filteredData);
+//     setFilteredDatsa(filteredData);
 //   }
 
  
@@ -62,7 +74,9 @@ function ManagerView() {
             columns={columns}
             data={data}
             progressPending={loading}
+            onRowClicked={onRowClicked}
           />
+          
         </div>
       </div>
     </div>
