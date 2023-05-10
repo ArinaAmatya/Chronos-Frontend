@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs'
 import {startOfWeek, endOfWeek} from 'date-fns'
 
-function ViewDataSelf() {
+function ViewEmployee() {
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
   const [loading, setLoading] = useState(false);
@@ -75,7 +75,7 @@ function ViewDataSelf() {
   );
 }
 
-export default ViewDataSelf;
+export default ViewEmployee;
 
 
 
