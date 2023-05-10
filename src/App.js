@@ -18,9 +18,9 @@ import SideBar from "./components/SideBar";
 // import ContactUs from "./components/ContactUs";
 import PunchInPage from "./PunchInPage";
 
-import ViewData from "./ViewData";
-
 import managerView from "./ManagerView";
+
+import ViewDataSelf from "./ViewDataSelf"
 
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
 
           <Route path="/punchin" component={PunchInPage} />
 
-          <Route path="/viewdata" component={ViewData} />
+          <Route path="/viewdata" component={ViewDataSelf} />
 
           <Route path="/managerview" component={managerView} />
           {/* If any route mismatches the upper 
