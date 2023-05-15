@@ -23,7 +23,7 @@ function ViewEmployee() {
 
   async function fetchTableData(beginWeek, endWeek) {
     setLoading(true);
-    const url = 'http://127.0.0.1:8000/api/accounts/api/manager/employees/hoursWorked?employee_email='+ localStorage.getItem('email') +'from_date=' + beginWeek + '&to_date=' + endWeek
+    const url = 'http://127.0.0.1:8000/api/accounts/manager/employees/hoursWorked?employee_email='+ localStorage.getItem('email') +'from_date=' + beginWeek + '&to_date=' + endWeek
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -56,7 +56,7 @@ function ViewEmployee() {
         <div style={{ marginRight: '1700px', fontSize: '40px', fontWeight: 'ExtraBold', color: '#000000' }}>CHRONOS</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: 'calc(100vh - 300px)' }}>
-        <div style={{ fontSize: '40px', marginBottom: '00px', color: 'black', textAlign: 'center' }}>View Hours</div>
+        <div style={{ fontSize: '40px', marginBottom: '00px', color: 'black', textAlign: 'center' }}>{localStorage.getItem('First Name')} {localStorage.getItem('Last Name')}'s Hours</div>
         <Calendar 
           calendarType="US"
           onChange={onChange} 

@@ -29,7 +29,7 @@ function ManagerView() {
 
   async function fetchTableData() {
     setLoading(true);
-    const response = await fetch('http://127.0.0.1:8000/api/accounts/api/manager/employees?', {
+    const response = await fetch('http://127.0.0.1:8000/api/accounts/manager/employees', {
       method: 'GET',
       headers: {
         'accept':'application/json', 'Authorization' : 'token ' + localStorage.getItem('token')
