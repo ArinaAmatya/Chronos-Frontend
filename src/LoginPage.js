@@ -27,7 +27,7 @@ async function getUserInfo() {
 }
 
 async function getEmployees() {
-  return fetch('http://127.0.0.1:8000/api/accounts/api/manager/employees', {
+  return fetch('http://127.0.0.1:8000/api/accounts/manager/employees', {
   method: 'GET',
   headers: {
     'accept': 'application/json',
