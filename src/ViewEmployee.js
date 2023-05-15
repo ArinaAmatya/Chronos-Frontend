@@ -23,7 +23,7 @@ function ViewEmployee() {
 
   async function fetchTableData(beginWeek, endWeek) {
     setLoading(true);
-    const url = 'http://127.0.0.1:8000/api/accounts/api/manager/employees/hoursWorked?employee_email='+ localStorage.getItem('email') +'&from_date=' + beginWeek + '&to_date=' + endWeek
+    const url = 'http://127.0.0.1:8000/api/accounts/manager/employees/hoursWorked?employee_email='+ localStorage.getItem('email') +'&from_date=' + beginWeek + '&to_date=' + endWeek
     const response = await fetch(url, {
       method: 'GET',
       headers: {
