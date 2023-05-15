@@ -22,15 +22,34 @@ function PunchInPage(){
       return JSON.parse(response)
   }
 
+  function stringManip(string) {
+    let hours = string.slice(0,2)
+    let theRest = string.substring(2, string.length-7)
+    let millis = string.slice(-7)
+    console.log(hours)
+    hours = parseInt(hours) - 4
+    console.log(hours)
+    if (hours > 12) {
+      return hours%12 + theRest + " PM"
+    }
+    else if (hours == 12) {
+      return hours + theRest + " PM"
+    }
+    else {
+      return hours + theRest + " AM"
+    }
+  }
+
 
   useEffect(() => {
     async function fetchData() {
         const response = await getPunchIn();
         console.log(response.Response["start time"])
-        setTimeOnSubmit(response.Response["start time"]);
         if (response.Response["start time"] != null) {
-          console.log("hi")
-          setIsPunchedIn(true)
+          const a = stringManip(response.Response["start time"])
+          console.log(a)
+          setTimeOnSubmit(a)
+          setIsPunchedIn(true)  
           setShowClockInClockOut(true)
       }
     }
@@ -67,6 +86,7 @@ function PunchInPage(){
         <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 300px)' }}> 
           <div style={{fontSize: '100px', fontWeight: 'ExtraBold', color: '#ff5e8e' }}>{date.toLocaleTimeString()}</div>
+          <div style={{ fontSize: '20px', marginBottom: '40px', color: 'gray', textAlign: 'center' }}>click on box below to punch in</div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 'calc(100vh - 100px)'}}>
                 <input type="checkbox" style={{ width: '200px', height: '200px' }} />
             </div>
