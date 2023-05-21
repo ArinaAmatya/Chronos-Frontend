@@ -51,6 +51,7 @@ function PunchInPage(){
           setTimeOnSubmit(a)
           setIsPunchedIn(true)  
           setShowClockInClockOut(true)
+          document.getElementById("1403317").checked = true;
       }
     }
     if (!hasCalledAPI) {
@@ -85,10 +86,11 @@ function PunchInPage(){
     return  (
         <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow' }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100vh - 300px)' }}> 
-          <div style={{fontSize: '100px', fontWeight: 'ExtraBold', color: '#ff5e8e' }}>{date.toLocaleString()}</div>
-          <div style={{ fontSize: '20px', marginBottom: '40px', color: 'gray', textAlign: 'center' }}>click on box below to punch in</div>
+          <div style={{fontSize: '60px', fontWeight: 'ExtraBold', color: '#ff5e8e' }}>{date.toLocaleDateString("en-US")}</div>
+          <div style={{lineHeight: "0.7", fontSize: '100px', fontWeight: 'ExtraBold', color: '#ff5e8e' }}>{date.toLocaleTimeString()}</div>
+          <div style={{lineHeight: "2.5", fontSize: '35px', marginBottom: '40px', color: 'gray', textAlign: 'center' }}>click on box below to punch in</div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: 'calc(100vh - 100px)'}}>
-                <input type="checkbox" style={{ width: '200px', height: '200px' }} />
+                <input type="checkbox" id="1403317" style={{ width: '200px', height: '200px' }} />
             </div>
             <button type="submit" style={{ padding: '15px', borderRadius: '5px', backgroundColor: 'green', color: 'white', border: 'none', width: '20%', fontSize: '24px', padding: '10px 20px'}}>Submit</button> &nbsp;&nbsp;&nbsp;
             {showClockInClockOut && isPunchedIn && <p style={{ color: 'green', fontSize: '50px'}}>You clocked in at {timeOnSubmit}</p>}

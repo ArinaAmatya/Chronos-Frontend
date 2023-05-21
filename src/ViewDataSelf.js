@@ -55,7 +55,7 @@ function ViewDataSelf() {
         <img src={require("./images/logo.png")} alt="Logos" style={{ height: '50px' }} />
         <div style={{ marginRight: '1700px', fontSize: '40px', fontWeight: 'ExtraBold', color: '#000000' }}>CHRONOS</div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: 'calc(100vh - 300px)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>
         <div style={{ fontSize: '40px', marginBottom: '00px', color: 'black', textAlign: 'center' }}>View Hours</div>
         <Calendar 
           calendarType="US"
@@ -63,7 +63,7 @@ function ViewDataSelf() {
           value={date}
         />
       </div>
-      <div style={{ marginBottom: '400px', maxWidth: 'calc(100vh - 100px)', width: '100%' }}>
+      <div style={{marginBottom: '400px', maxWidth: 'calc(100vh - 100px)', width: '100%' }}>
         <DataTable
           columns={columns}
           data={data}

@@ -48,14 +48,14 @@ function ViewEmployee() {
   useEffect(() => {
     console.log(data);
   }, [data]);
-
+  
   return (
     <div style={{ backgroundColor: '#D9D9D9', height: '100vh', fontFamily: 'Barlow', display: 'grid', placeItems: 'center' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }}>
         <img src={require("./images/logo.png")} alt="Logos" style={{ height: '50px' }} />
         <div style={{ marginRight: '1700px', fontSize: '40px', fontWeight: 'ExtraBold', color: '#000000' }}>CHRONOS</div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: 'calc(100vh - 300px)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>
         <div style={{ fontSize: '40px', marginBottom: '00px', color: 'black', textAlign: 'center' }}>{localStorage.getItem('First Name')} {localStorage.getItem('Last Name')}'s Hours</div>
         <Calendar 
           calendarType="US"
@@ -63,7 +63,7 @@ function ViewEmployee() {
           value={date}
         />
       </div>
-      <div style={{ marginBottom: '400px', maxWidth: 'calc(100vh - 100px)', width: '100%' }}>
+      <div style={{marginBottom: '400px', maxWidth: 'calc(100vh - 100px)', width: '100%' }}>
         <DataTable
           columns={columns}
           data={data}

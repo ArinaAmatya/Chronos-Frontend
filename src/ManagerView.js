@@ -75,6 +75,7 @@ function ManagerView() {
             data={data}
             progressPending={loading}
             onRowClicked={onRowClicked}
+            highlightOnHover = {true}
           />
           
         </div>
